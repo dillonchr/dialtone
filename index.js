@@ -2,6 +2,7 @@
     const audio = new (context.AudioContext || context.webkitAudioContext)();
     const gain = audio.createGain();
     const tones = [];
+    let keepRinging = false;
     gain.connect(audio.destination);
     gain.gain.value = typeof gainCut !== 'undefined' ? gainCut : 0.1;
 
@@ -13,8 +14,12 @@
     };
 
     const dialBack = () => {
+        if (!keepRinging) {
+            return;
+        }
         createDualTone(440, 480);
         setTimeout(clearTones, 2000);
+        setTimeout(dialBack, 6000);
     };
 
     const playTones = () => {
@@ -59,5 +64,13 @@
         [0, 941, 1336],
         ['#', 941, 1477]
     ].forEach(([n, l, h]) => bindNumber(n, l, h));
+
+    [...document.querySelectorAll('[data-call]')]
+        .forEach((button, i) => {
+            button.addEventListener('mousedown', () => {
+                keepRinging = !i;
+                i ? clearTones() : dialBack();
+            });
+        });
 })(window);
 

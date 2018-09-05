@@ -1,0 +1,20 @@
+{
+  "name": "dialtone",
+  "version": "1.0.0",
+  "description": "phone dial tone noise maker",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server",
+    "test": "echo 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dillonchr/dialtone.git"
+  },
+  "author": "",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/dillonchr/dialtone/issues"
+  },
+  "homepage": "https://github.com/dillonchr/dialtone#readme"
+}
